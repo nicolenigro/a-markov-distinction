@@ -7,7 +7,7 @@
 3. Clone this repository onto your computer with the following line.  
 `git clone https://github.com/nicolenigro/a-markov-distinction.git`
 4. Change your directory to the folder for this project.  
-`cd a-markov-distincion`
+`cd a-markov-distinction`
 5. Type and enter the following line into the terminal to run the program.  
 `python markov_artist.py`
 
