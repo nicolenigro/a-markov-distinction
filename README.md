@@ -4,9 +4,11 @@
 
 ## How to Set Up and Run the Code
 1. Open the terminal.
-2. Install the Python modules necessary to run the code: numpy and PIL (random should already be installed in Python). If you already use pip, you can install them with the following commands.
-`pip install numpy  
-pip install Pillow`
+2. Install the Python modules necessary to run the code: numpy and PIL (random should already be installed in Python). If you already use pip, you can install them with the following commands.  
+```
+pip install numpy  
+pip install Pillow
+```
 3. Change your directory to the folder you want to store this code in.  
 `cd Documents/GitHub`
 4. Clone this repository onto your computer with the following line.  
