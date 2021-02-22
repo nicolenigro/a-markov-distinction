@@ -6,12 +6,13 @@ Nicole Nigro
 This program uses a Markov chain to paint a painting where the color used to paint each pixel relies
 on the Markov chain probabilities.
 
-Dependencies: random, numpy, PIL
+Dependencies: random, numpy, PIL, itertools
 """
 
 import random
 import numpy as np
 from PIL import Image
+from itertools import product
 
 RGB_VALUES = {
     "color1": (random.randint(0,255),random.randint(0,255),random.randint(0,255)), 
@@ -48,11 +49,10 @@ class MarkovArtist:
         height = 600
         img = Image.new('RGB', (width,height), (255,255,255)) #using RGB scale for colors
 
-        for y in range(height):
-            for x in range(width):
-                next_color = self.get_next_color(current_color)
-                img.putpixel((x, y), RGB_VALUES[next_color])
-                current_color = next_color  
+        for x, y in product(range(width), range(height)):
+            next_color = self.get_next_color(current_color)
+            img.putpixel((x, y), RGB_VALUES[next_color])
+            current_color = next_color
         
         img.save('exampleArt.png') #change the string before .png ('exampleArt') to change the name the painting is saved under
 
