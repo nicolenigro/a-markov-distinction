@@ -3,10 +3,10 @@ Mission 3: A Markov Distinction
 Nicole Nigro
 2/21/21
 
-This program uses a Markov chain to paint a painting where the color used to paint each pixel
-is based off of the Markov chain probabilities.
+This program uses a Markov chain to paint a painting where the color used to paint each pixel relies
+on the Markov chain probabilities.
 
-Dependencies: random, numpy, PIL, 
+Dependencies: random, numpy, PIL
 """
 
 import random
@@ -54,7 +54,7 @@ class MarkovArtist:
                 img.putpixel((x, y), RGB_VALUES[next_color])
                 current_color = next_color  
         
-        img.save('exampleArt' + 1 + '.png') #change 'exampleArt' or the number to change the name the painting is saved uner
+        img.save('exampleArt.png') #change the string before .png ('exampleArt') to change the name the painting is saved under
 
         return img
 
@@ -67,7 +67,9 @@ def main():
         "color4": {"color1": 0.2, "color2": 0.4, "color3": 0.1, "color4": 0.3}
     })
 
-    painting_maker.paint_artwork("color1")
+    colors = ["color1", "color2", "color3", "color4"]
+
+    painting_maker.paint_artwork(random.choice(colors))
 
 if __name__ == "__main__":
     main()
