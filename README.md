@@ -28,7 +28,8 @@ python markov_artist.py
 ```
 
 ## Reflection
-
+**Describe how the system is personally meaningful to you…**  
+In freshman year, I took an art history class and when using the elements of art to analyze artworks, professors emphasized focus on form, which I didn’t find nearly as interesting or aesthetically pleasing as color. This system is personally meaningful to me because I had the creative power to place emphasis on the element of art that I enjoy the most—color. Growing up, when asked my favorite color, I would always respond "rainbow!”; my love of color is why I wanted to have my system use enough colors to fully explore this element while also not using too many to the point of chaos. By using a new palette of randomly generated RGB tuples for each painting, I am always excited and curious to see the new painting created by my system and the ways that different colors and their placements complement each other. Also, given that the system creates art that is saved as an image on the computer, I find meaning from the point of view I have as a viewer looking at my art on the screen and how the my interpretation can change when I zoom in and out. I’ve always appreciated art, whether it be in museum galleries or posted on Instagram, and being able to create a system that painted a vision I had in my mind was empowering; what I might not be able to create with my own two hands on canvas I was able to create with a program.
 
 ## Sources
 * Professor Harmon's markov_musician.py sample code
