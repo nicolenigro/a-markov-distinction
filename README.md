@@ -1,6 +1,7 @@
-# Mission 3: A Markov Distinction
+# Le Pixelkov
 
 ## Description
+This program uses two Markov chains—one for color transition probabilities and another for layer transition probabilities—to paint a painting. The color used to paint each pixel and line relies on the color Markov chain, which has 4 colors, each of which are randomly generated for each painting. The layer being painted relies on the layer Markov chain, which has 2 states (lines or pixels). There are only 2 layers painted per painting so the system will yield a painting with pixels only, a painting with lines only, or a painting with lines overlaid on a pixel background.
 
 ## How to Set Up and Run the Code
 1. Open the terminal.
