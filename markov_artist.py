@@ -3,9 +3,9 @@ Mission 3: A Markov Distinction
 Nicole Nigro
 2/22/21
 
-This program uses a Markov chain to paint a painting where the color used to paint each pixel in 
-the background relies on the Markov chain's probabilities, and then uses the same Markov chain
-to paint linear art on top.
+This program uses Markov chains to paint a painting where the color used to paint each pixel and 
+line relies on one Markov chain's probabilities while the layer being painted (lines or pixels)
+depends on another Markov chain's probabilities.
 
 Dependencies: random, numpy, PIL, itertools
 """
@@ -23,13 +23,18 @@ RGB_VALUES = {
 }
 
 class MarkovArtist:
-    def __init__(self, transition_matrix):
-        """Simulates an artist that relies on a simple Markov chain.
+    def __init__(self, color_transition_matrix, layer_transition_matrix):
+        """Simulates an artist that relies on one Markov chain for colors and another
+        Markov chain for layers.
             Args:
-                transition_matrix (dict): transition probabilities
+                color_transition_matrix (dict): color transition probabilities
+                layer_transition_matrix (dict): layer transition probabilities
         """
-        self.transition_matrix = transition_matrix
-        self.colors = list(transition_matrix.keys())
+        self.color_transition_matrix = color_transition_matrix
+        self.colors = list(color_transition_matrix.keys())
+        
+        self.layer_transition_matrix = layer_transition_matrix
+        self.layers = list(layer_transition_matrix.keys())
 
     def get_next_color(self, current_color):
         """Decides which color to use next based on the current color.
@@ -38,47 +43,72 @@ class MarkovArtist:
         """
         return np.random.choice(
             self.colors,
-            p=[self.transition_matrix[current_color][next_color] for next_color in self.colors]
+            p=[self.color_transition_matrix[current_color][next_color] for next_color in self.colors]
         )
     
-    def paint_artwork(self, current_color):
-        """Paints the entire background of the painting pixel by pixel, draws lines on top, and 
-        then saves it.
+    def get_next_layer(self, current_layer):
+        """Decides which type of layer to paint next based on the current layer.
+            Args:
+                current_layer (str): the current layer being painted.
+        """
+        return np.random.choice(
+            self.layers,
+            p=[self.layer_transition_matrix[current_layer][next_layer] for next_layer in self.layers]
+        )
+
+    def paint_artwork(self, current_color, current_layer):
+        """Paints the painting, layer by layer, and then saves it. The pixels layer paints the
+        entire background pixel by pixel using the color Markov chain while the lines layer
+        draws a series of lines connected to each other also using the color Markov chain.
             Args:
                 current_color (str): the current color being used to paint.
+                current_layer (str): the current layer being painted.
         """
         width = 800
         height = 600
-        img = Image.new('RGB', (width,height), (255,255,255)) #using RGB scale for colors
+        img = Image.new('RGB', (width,height), RGB_VALUES[current_color]) #using RGB scale for colors
 
-        #PIXEL BACKGROUND
-        for x, y in product(range(width), range(height)):
-            next_color = self.get_next_color(current_color)
-            img.putpixel((x, y), RGB_VALUES[next_color])
-            current_color = next_color
-        
-        #LINES
-        counter = 0
-        maximum = random.randint(0,200)
-        start_x = random.uniform(0, width)
-        start_y = random.uniform(0, height)
-        end_x = random.uniform(0, width)
-        end_y = random.uniform(0, height)
+        iteration = 0
 
-        while counter < maximum:
-            lines = ImageDraw.Draw(img)
+        while (iteration < 2):
+            if (current_layer == "pixels"):
+                for x, y in product(range(width), range(height)):
+                    next_color = self.get_next_color(current_color)
+                    img.putpixel((x, y), RGB_VALUES[next_color])
+                    current_color = next_color
 
-            next_color = self.get_next_color(current_color)
-            lines.line((start_x, start_y, end_x, end_y), RGB_VALUES[next_color])
-            current_color = next_color
+                next_layer = self.get_next_layer(current_layer)
+                current_layer = next_layer
 
-            start_x = end_x
-            start_y = end_y
+                iteration = iteration + 1
 
-            end_x = random.uniform(0, width)
-            end_y = random.uniform(0, height)
+            elif (current_layer == "lines"):
+                counter = 0
+                maximum = random.randint(0,1400)
+                start_x = random.uniform(0, width)
+                start_y = random.uniform(0, height)
+                end_x = random.uniform(0, width)
+                end_y = random.uniform(0, height)
 
-            counter = counter + 1
+                while counter < maximum:
+                    lines = ImageDraw.Draw(img)
+
+                    next_color = self.get_next_color(current_color)
+                    lines.line((start_x, start_y, end_x, end_y), RGB_VALUES[next_color])
+                    current_color = next_color
+
+                    start_x = end_x
+                    start_y = end_y
+
+                    end_x = random.uniform(0, width)
+                    end_y = random.uniform(0, height)
+
+                    counter = counter + 1
+                
+                next_layer = self.get_next_layer(current_layer)
+                current_layer = next_layer
+
+                iteration = iteration + 1
 
         img.show()
         
@@ -88,40 +118,24 @@ class MarkovArtist:
 
 
 def main():
-    painting_maker1 = MarkovArtist({
+    painting_maker = MarkovArtist({
         "color1": {"color1": 0.3, "color2": 0.2, "color3": 0.2, "color4": 0.3},
         "color2": {"color1": 0.6, "color2": 0.2, "color3": 0.1, "color4": 0.1},
         "color3": {"color1": 0.1, "color2": 0.2, "color3": 0.2, "color4": 0.5},
         "color4": {"color1": 0.2, "color2": 0.4, "color3": 0.1, "color4": 0.3}    
-    })
-
-    painting_maker2 = MarkovArtist({
-        "color1": {"color1": 0.5, "color2": 0.1, "color3": 0.2, "color4": 0.2},
-        "color2": {"color1": 0.2, "color2": 0.5, "color3": 0.1, "color4": 0.2},
-        "color3": {"color1": 0.2, "color2": 0.2, "color3": 0.5, "color4": 0.1},
-        "color4": {"color1": 0.1, "color2": 0.2, "color3": 0.2, "color4": 0.5}
-    })
-
-    painting_maker3 = MarkovArtist({
-        "color1": {"color1": 0.8, "color2": 0.05, "color3": 0.05, "color4": 0.1},
-        "color2": {"color1": 0.1, "color2": 0.15, "color3": 0.6, "color4": 0.15},
-        "color3": {"color1": 0.7, "color2": 0.24, "color3": 0.03, "color4": 0.03},
-        "color4": {"color1": 0.02, "color2": 0.02, "color3": 0.9, "color4": 0.06}
-    })
-
-    painting_maker4 = MarkovArtist({
-        "color1": {"color1": 0.01, "color2": 0.9, "color3": 0.08, "color4": 0.01},
-        "color2": {"color1": 0.03, "color2": 0.9, "color3": 0.01, "color4": 0.06},
-        "color3": {"color1": 0.04, "color2": 0.9, "color3": 0.04, "color4": 0.02},
-        "color4": {"color1": 0.05, "color2": 0.9, "color3": 0.02, "color4": 0.03}
+        }, 
+        {
+        "pixels": {"pixels": 0.5, "lines": 0.5},
+        "lines": {"pixels": 0.5, "lines": 0.5}
     })
 
     colors = ["color1", "color2", "color3", "color4"]
-    painters = [painting_maker1, painting_maker2, painting_maker3, painting_maker4]
-    current_painter = random.choice(painters)
     start_color = random.choice(colors)
 
-    current_painter.paint_artwork(start_color)
+    layers = ["pixels", "lines"]
+    start_layer = random.choice(layers)
+
+    painting_maker.paint_artwork(start_color, start_layer)
 
 if __name__ == "__main__":
     main()
