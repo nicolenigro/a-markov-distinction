@@ -10,13 +10,21 @@ pip install numpy
 pip install Pillow
 ```
 3. Change your directory to the folder you want to store this code in.  
-`cd Documents/GitHub`
+```
+cd Documents/GitHub
+```
 4. Clone this repository onto your computer with the following line.  
-`git clone https://github.com/nicolenigro/a-markov-distinction.git`
+```
+git clone https://github.com/nicolenigro/a-markov-distinction.git
+```
 5. Change your directory to the folder for this project.  
-`cd a-markov-distinction`
+```
+cd a-markov-distinction
+```
 6. Type and enter the following line into the terminal to run the program.  
-`python markov_artist.py`
+```
+python markov_artist.py
+```
 
 ## Reflection
 
