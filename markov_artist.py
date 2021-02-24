@@ -25,10 +25,10 @@ RGB_VALUES = {
 }
 
 #create 800x600 image with a randomly generated background color
-width = 800
-height = 600
+WIDTH = 800
+HEIGHT = 600
 background_color = (random.randint(0,255),random.randint(0,255),random.randint(0,255))
-img = Image.new('RGB', (width,height), background_color)
+img = Image.new('RGB', (WIDTH,HEIGHT), background_color)
 
 class MarkovArtist:
     def __init__(self, color_transition_matrix, layer_transition_matrix):
@@ -69,7 +69,7 @@ class MarkovArtist:
             Args:
                 current_color (str): the current color being used to paint.
         """
-        for x, y in product(range(width), range(height)):
+        for x, y in product(range(WIDTH), range(HEIGHT)):
             next_color = self.get_next_color(current_color)
             img.putpixel((x, y), RGB_VALUES[next_color])
             current_color = next_color
@@ -86,10 +86,10 @@ class MarkovArtist:
         maximum = random.randint(0,1400)
 
         #randomly choose start and end coordinates for the first line
-        start_x = random.uniform(0, width)
-        start_y = random.uniform(0, height)
-        end_x = random.uniform(0, width)
-        end_y = random.uniform(0, height)
+        start_x = random.uniform(0, WIDTH)
+        start_y = random.uniform(0, HEIGHT)
+        end_x = random.uniform(0, WIDTH)
+        end_y = random.uniform(0, HEIGHT)
 
         while counter < maximum:
             lines = ImageDraw.Draw(img)
@@ -101,8 +101,8 @@ class MarkovArtist:
             #update the coordinates so the next line starts where the previous line ended
             start_x = end_x
             start_y = end_y
-            end_x = random.uniform(0, width)
-            end_y = random.uniform(0, height)
+            end_x = random.uniform(0, WIDTH)
+            end_y = random.uniform(0, HEIGHT)
 
             counter = counter + 1
 
