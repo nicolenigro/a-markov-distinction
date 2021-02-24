@@ -35,16 +35,16 @@ In freshman year, I took an art history class and when using the elements of art
 Based on this class’s first definition of creativity—a creative system is both novel and valuable—I believe that my system fulfills the novel component of creativity in that each time it is run, it creates a new piece of art using a unique color palette, pixel/line placement, and combination of layers based off of Markov probabilities. However, I’m not certain my system is valuable. The pixel layer that my system creates is vaguely similar to mainstream art I have seen on album covers ("A Different Arrangement" by Black Marble, "Real Love Baby" single by Father John Misty) as well as clothing (Paloma Wool Puerto pants). Meanwhile, the line layer somewhat resembles some of Sol LeWitt’s wall drawings. If patterns/art similar to my pixel and line layers are associated with popularity/success (in streams for the songs using the album art, financially for the sold out pants, critical acclaim for LeWitt), does that make my system valuable? I’m not really sure. Ventura’s “How To Build A CC System” considers value as “the importance, worth, or usefulness of something; this would typically be ascribed by practitioners of the domain in question.” So I guess the question of if my system is valuable remains unanswered until the artists themselves judge. Furthermore, Ventura’s definition of a computationally creative agent expands on the class’s definition with the inclusion of intentionality. I believe that my system is intentional because my output is correlated with the process as the layers based on the Markov chain are visible in the output. In conclusion, I think that my system is novel and intentional, but am unsure of its value, fulfilling 1/2 of the components of the class’s definition of creativity and 2/3 of the components of Ventura’s definition. Aside from formal definitions, I think my system is a start for creativity, but there’s more I can do to make it even more creative.
 
 ![Image of A Different Arrangement album artwork]
-(http://images.genius.com/5731bdda8a5e9407c8d29bd5275cb39d.1000x1000x1.jpg)
+(http://images.genius.com/5731bdda8a5e9407c8d29bd5275cb39d.1000x1000x1.png)
 
 ![Image of Real Love Baby album artwork]
-(https://media.pitchfork.com/photos/5929f6440c2bba1b7de038d6/1:1/w_500/691e31e5.jpg)
+(https://media.pitchfork.com/photos/5929f6440c2bba1b7de038d6/1:1/w_500/691e31e5.png)
 
 ![Image of Puerto Pants]
-(https://cdn.shopify.com/s/files/1/0412/0952/8474/products/puerto-elastic-high-waist-knitted-pants-black-01_912x.jpg?v=1602859144)
+(https://cdn.shopify.com/s/files/1/0412/0952/8474/products/puerto-elastic-high-waist-knitted-pants-black-01_912x.png?v=1602859144)
 
 ![Image of Sol Lewitt Wall Drawing]
-(https://i.pinimg.com/originals/30/12/25/3012252ef6cb598bc4660554e5c7a6ae.jpg)
+(https://i.pinimg.com/originals/30/12/25/3012252ef6cb598bc4660554e5c7a6ae.png)
 
 ## Sources
 * Professor Harmon's markov_musician.py sample code
