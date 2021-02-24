@@ -1,7 +1,7 @@
 """
 Mission 3: A Markov Distinction
 Nicole Nigro
-2/22/21
+2/23/21
 
 This program uses Markov chains to paint a painting where the color used to paint each pixel and 
 line relies on one Markov chain's probabilities while the layer being painted (lines or pixels)
@@ -37,7 +37,6 @@ class MarkovArtist:
         """
         self.color_transition_matrix = color_transition_matrix
         self.colors = list(color_transition_matrix.keys())
-        
         self.layer_transition_matrix = layer_transition_matrix
         self.layers = list(layer_transition_matrix.keys())
 
@@ -94,7 +93,6 @@ class MarkovArtist:
 
             start_x = end_x
             start_y = end_y
-
             end_x = random.uniform(0, width)
             end_y = random.uniform(0, height)
 
