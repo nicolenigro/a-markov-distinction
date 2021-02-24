@@ -1,7 +1,8 @@
 """
+Le Pixelkov
 Mission 3: A Markov Distinction
 Nicole Nigro
-2/23/21
+2/24/21
 
 This program uses Markov chains to paint a painting where the color used to paint each pixel and 
 line relies on one Markov chain's probabilities while the layer being painted (lines or pixels)
@@ -15,6 +16,7 @@ import numpy as np
 from PIL import Image, ImageDraw
 from itertools import product
 
+#painting will use 4 colors, each is a randomly generated RGB tuple
 RGB_VALUES = {
     "color1": (random.randint(0,255),random.randint(0,255),random.randint(0,255)), 
     "color2": (random.randint(0,255),random.randint(0,255),random.randint(0,255)),
@@ -22,10 +24,11 @@ RGB_VALUES = {
     "color4": (random.randint(0,255),random.randint(0,255),random.randint(0,255))
 }
 
+#create 800x600 image with a randomly generated background color
 width = 800
 height = 600
 background_color = (random.randint(0,255),random.randint(0,255),random.randint(0,255))
-img = Image.new('RGB', (width,height), background_color) #using RGB scale for colors
+img = Image.new('RGB', (width,height), background_color)
 
 class MarkovArtist:
     def __init__(self, color_transition_matrix, layer_transition_matrix):
@@ -78,7 +81,11 @@ class MarkovArtist:
                 current_color (str): the current color being used to paint.
         """
         counter = 0
+
+        #randomly set a max for how many lines are drawn
         maximum = random.randint(0,1400)
+
+        #randomly choose start and end coordinates for the first line
         start_x = random.uniform(0, width)
         start_y = random.uniform(0, height)
         end_x = random.uniform(0, width)
@@ -88,9 +95,10 @@ class MarkovArtist:
             lines = ImageDraw.Draw(img)
 
             next_color = self.get_next_color(current_color)
-            lines.line((start_x, start_y, end_x, end_y), RGB_VALUES[next_color])
+            lines.line((start_x, start_y, end_x, end_y), RGB_VALUES[next_color], width=1, joint="curve")
             current_color = next_color
 
+            #update the coordinates so the next line starts where the previous line ended
             start_x = end_x
             start_y = end_y
             end_x = random.uniform(0, width)
@@ -99,7 +107,8 @@ class MarkovArtist:
             counter = counter + 1
 
     def paint_artwork(self, current_color, current_layer):
-        """Paints the painting, layer by layer, and then saves it.
+        """Paints the painting, layer by layer using the probabilities from the layer
+        Markov chain, and then saves it.
             Args:
                 current_color (str): the current color being used to paint.
                 current_layer (str): the current layer being painted.
@@ -142,9 +151,11 @@ def main():
         "lines": {"pixels": 0.5, "lines": 0.5}
     })
 
+    #randomly choose 1 of the 4 colors as the start color
     colors = ["color1", "color2", "color3", "color4"]
     start_color = random.choice(colors)
 
+    #randomly choose "pixels" or "lines for the start layer"
     layers = ["pixels", "lines"]
     start_layer = random.choice(layers)
 

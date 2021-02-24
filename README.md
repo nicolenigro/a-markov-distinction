@@ -42,6 +42,7 @@ Based on this class’s first definition of creativity—a creative system is bo
 * Professor Harmon's markov_musician.py sample code
 * https://docs.python.org/3/library/random.html
 * https://pillow.readthedocs.io/en/stable/reference/ImageDraw.html
+* https://www.blog.pythonlibrary.org/2021/02/23/drawing-shapes-on-images-with-python-and-pillow/
 * https://www.geeksforgeeks.org/python-pil-putpixel-method/
 * https://www.rapidtables.com/web/color/RGB_Color.html
 * https://www.youtube.com/watch?v=mWPWTy7quYU
