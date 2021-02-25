@@ -46,3 +46,4 @@ Based on this class’s first definition of creativity—a creative system is bo
 * https://www.geeksforgeeks.org/python-pil-putpixel-method/
 * https://www.rapidtables.com/web/color/RGB_Color.html
 * https://www.youtube.com/watch?v=mWPWTy7quYU
+* I talked to Adrienne before starting the project about approaches to implementing Markov chains and different ideas on how to creat the art.
